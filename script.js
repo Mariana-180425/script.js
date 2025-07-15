@@ -1,4 +1,4 @@
-const ramos = {
+const ramas = {
   "Biología celular": ["Biología Molecular", "Morfofisiología I", "Histología"],
   "Química General": ["Química analítica"],
   "Formación Integral I": ["Formación Integral II"],
@@ -40,7 +40,7 @@ const ramos = {
   "Seminario de Investigación": ["Alternativa de grado"]
 };
 
-const listaRamos = [
+const listaRamas = [
   "Biología celular", "Química General", "Introducción al programa", "Lógica", "Informática Básica", "Expresión Oral y Escrita", "Formación Integral I", "Deporte Formativo",
   "Biología Molecular", "Física", "Morfofisiología I", "Química analítica", "Histología", "Ecología y Saneamiento Ambiental", "Formación Integral II", "Electiva Libre I",
   "Bioquímica", "Genética", "Morfofisiología II", "Bacteriología I", "Electiva Complementaria I", "Estadística Descriptiva", "Inglés I",
@@ -55,15 +55,15 @@ const listaRamos = [
 
 const grid = document.getElementById("grid");
 
-const estadoRamos = {};
+const estadoRamas = {};
 
-listaRamos.forEach(ramo => {
+listaRamos.forEach(rama => {
   const div = document.createElement("div");
-  div.classList.add("ramo");
-  div.textContent = ramo;
+  div.classList.add("rama");
+  div.textContent = rama;
 
   if (
-    Object.values(ramos).flat().includes(ramo)
+    Object.values(ramas).flat().includes(rama)
   ) {
     div.classList.add("disabled");
   }
@@ -72,13 +72,13 @@ listaRamos.forEach(ramo => {
     if (div.classList.contains("disabled")) return;
 
     div.classList.add("aprobado");
-    estadoRamos[ramo] = true;
+    estadoRamos[rama] = true;
 
     // Activar los siguientes
-    const desbloquear = ramos[ramo] || [];
+    const desbloquear = ramas[rama] || [];
     desbloquear.forEach(dep => {
-      const celda = [...document.querySelectorAll(".ramo")].find(el => el.textContent === dep);
-      if (celda && !estadoRamos[dep]) {
+      const celda = [...document.querySelectorAll(".rama")].find(el => el.textContent === dep);
+      if (celda && !estadoRamas[dep]) {
         celda.classList.remove("disabled");
       }
     });
@@ -86,4 +86,3 @@ listaRamos.forEach(ramo => {
 
   grid.appendChild(div);
 });
-
