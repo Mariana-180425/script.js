@@ -52,37 +52,3 @@ const listaRamas = [
   "Práctica Clínica", "Seminario de Investigación",
   "Práctica Aplicada", "Alternativa de grado"
 ];
-
-const grid = document.getElementById("grid");
-
-const estadoRamas = {};
-
-listaRamos.forEach(rama => {
-  const div = document.createElement("div");
-  div.classList.add("rama");
-  div.textContent = rama;
-
-  if (
-    Object.values(ramas).flat().includes(rama)
-  ) {
-    div.classList.add("disabled");
-  }
-
-  div.addEventListener("click", () => {
-    if (div.classList.contains("disabled")) return;
-
-    div.classList.add("aprobado");
-    estadoRamos[rama] = true;
-
-    // Activar los siguientes
-    const desbloquear = ramas[rama] || [];
-    desbloquear.forEach(dep => {
-      const celda = [...document.querySelectorAll(".rama")].find(el => el.textContent === dep);
-      if (celda && !estadoRamas[dep]) {
-        celda.classList.remove("disabled");
-      }
-    });
-  });
-
-  grid.appendChild(div);
-});
